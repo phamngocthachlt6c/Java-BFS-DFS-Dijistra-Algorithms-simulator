@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import java.awt.Graphics2D;
 
+import logic.Edge;
 import logic.Line_List;
 import logic.Link;
 import logic.Node;

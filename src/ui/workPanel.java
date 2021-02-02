@@ -356,12 +356,17 @@ public class workPanel extends JPanel{
 			
 			@Override
 			public void onFailed() {
+				System.out.println("failed file");
 			}
 			
 			@Override
 			public void onCreated(File file) {
+				System.out.println("success file");
 				try {
-					FileUtils.writeGraph(file, nodeLinkData);
+//					FileUtils.writeGraph(file, nodeLinkData, listEdge);
+					FileUtils.readGraph(file, nodeLinkData, listEdge);
+					repaint();
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

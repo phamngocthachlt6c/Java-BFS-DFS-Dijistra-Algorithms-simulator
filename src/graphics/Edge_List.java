@@ -1,24 +1,12 @@
 package graphics;
 import java.awt.Point;
 
+import logic.Edge;
 import logic.Node;
-
-class Edge {
-	Node a, b;
-	int ts;
-	Edge next;
-
-	public Edge(Node a, Node b, int ts, Edge next) {
-		this.a = a;
-		this.b = b;
-		this.ts = ts;
-		this.next = next;
-	}
-}
 
 public class Edge_List {
 
-	Edge First;
+	public Edge First;
 	private Edge c;
 
 	public Edge_List() {
