@@ -52,6 +52,14 @@ public class Node_Link {
 			p = p.NodeNext;
 		}
 	}
+	
+	public void InsertNode(Node node) {
+		if (isEmpty())
+			FirstNode = LastNode = node;
+		else
+			LastNode.NodeNext = node;
+		LastNode = node;
+	}
 
 	public void InsertNode(int data, Point xy) {
 		Node node = new Node(data, null, null, xy.x, xy.y);

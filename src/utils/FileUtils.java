@@ -20,12 +20,14 @@ import logic.Node_Link;
 
 public class FileUtils {
 	
-	public static void readGraph(File file, Node_Link nodelink, Edge_List edgeList) throws IOException{
-		System.out.println("Start");
+	public static int readGraph(File file, Node_Link nodelink, Edge_List edgeList) throws IOException{
 		FileInputStream fis = new FileInputStream(file);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 		String line;
 		int currentSegment = 0;
+		nodelink.FirstNode = null;
+		edgeList.First = null;
+		int data = 0;
 		while((line = br.readLine()) != null) {
 			if(line.equals("#")) {
 				currentSegment++;
@@ -34,15 +36,24 @@ public class FileUtils {
 			String[] values = line.split(" ");
 			switch(currentSegment) {
 				case 0:
-					System.out.println("0:"+values[0] + ", " +values[1] + ", " +values[2] + ", " );
+					//this variable just for counting the number of node, so that can be the next value
+					data++;
+					Node node = new Node(Integer.parseInt(values[0]), null, null, 
+							Integer.parseInt(values[1]), Integer.parseInt(values[2]));
+					nodelink.InsertNode(node);
 					break;
 				case 1:
-					System.out.println("1:"+values[0] + ", " +values[1] + ", " +values[2] + ", " );
+					Node a = nodelink.get_Node(Integer.parseInt(values[0]));
+					Node b = nodelink.get_Node(Integer.parseInt(values[1]));
+					int cost = Integer.parseInt(values[2]);
+					edgeList.InsertEdge(cost, a, b);
+					nodelink.nutxet_nutke(a.cost, b.cost);
 					break;
 			}
 		}
+
 		br.close();
-		System.out.println("close");
+		return data;
 	}
 	
 	public static void writeGraph(File file, Node_Link nodelink, Edge_List edgeList) throws IOException {

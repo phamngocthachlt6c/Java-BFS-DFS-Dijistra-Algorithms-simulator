@@ -351,6 +351,7 @@ public class workPanel extends JPanel{
 		});
 	}
 	
+	// Save The Graph
 	public void saveGraph() {
 		new CreateFile().create("graph", new CreateFile.OnFileCreated() {
 			
@@ -363,9 +364,8 @@ public class workPanel extends JPanel{
 			public void onCreated(File file) {
 				System.out.println("success file");
 				try {
-//					FileUtils.writeGraph(file, nodeLinkData, listEdge);
-					FileUtils.readGraph(file, nodeLinkData, listEdge);
-					repaint();
+						FileUtils.writeGraph(file, nodeLinkData, listEdge);
+					
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -373,6 +373,32 @@ public class workPanel extends JPanel{
 			}
 		});
 	}
+	
+	// Read The Graph
+		public void readGraph() {
+			new CreateFile().create("graph", new CreateFile.OnFileCreated() {
+				
+				@Override
+				public void onFailed() {
+					System.out.println("failed file");
+				}
+				
+				@Override
+				public void onCreated(File file) {
+					System.out.println("success file");
+					try {
+//						// Don't care "data" variable, just a counting the node in graph
+						// So that I can get this for put the name of next automatically 
+						// But if rename the node, this is no longer affective, might get bugs
+						data = FileUtils.readGraph(file, nodeLinkData, listEdge);
+						repaint();
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
 	
 	public void updateTable(){
 		mf.tableValues.Input(matNum.getA(), matNum.getSize());

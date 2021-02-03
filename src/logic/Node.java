@@ -9,7 +9,7 @@ public class Node {
 	
 	
 
-	Node(int d, Node next, Link l, int x, int y) {
+	public Node(int d, Node next, Link l, int x, int y) {
 		this.NodeNext = next;
 		cost = d;
 		adj = l;
